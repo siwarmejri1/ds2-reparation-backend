@@ -54,17 +54,18 @@ export class AuthService {
       //sauvegardina l user jdid fel bd
       const savedUser = await this.userRepository.save(newUser);
 
-      //contenu mte3 l token
+      //contenu mte3 l token lezm fiih l'ID et le Rôle de l'user khw
 
       const payload = {
         sub: savedUser.id,
-        email: savedUser.email,
         role: savedUser.role,
       };
+      console.log(payload);
       //generiw l token
       const accessToken = this.jwtService.sign(payload);
 
       return {
+        ...newUser,
         access_token: accessToken,
       };
     } catch (error) {
@@ -96,13 +97,13 @@ export class AuthService {
 
     const payload = {
       sub: user.id,
-      email: user.email,
       role: user.role,
     };
 
     const accessToken = this.jwtService.sign(payload);
 
     return {
+      ...user,
       access_token: accessToken,
     };
   }
