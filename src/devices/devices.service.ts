@@ -14,7 +14,7 @@ export class DevicesService {
     private devicesRepository: Repository<Device>, //repository mte3 device
   ) {}
 
-  async create(createDeviceDto: CreateDeviceDto): Promise<Device> { //méthode besh nassn3ou device jdida 
+  async create(createDeviceDto: CreateDeviceDto): Promise<Device> { //méthode besh nassn3ou device jdid
     // Vérifier si le numéro de série existe déjà
     const existingDevice = await this.devicesRepository.findOne({
       where: { serialNumber: createDeviceDto.serialNumber },
@@ -28,13 +28,13 @@ export class DevicesService {
     return this.devicesRepository.save(device); //sauvegarde l device fl base
   }
 
-  async findAll(): Promise<Device[]> { //méthode besh nrecupere kol devices
+  async findAll(): Promise<Device[]> { //méthode besh nrecuperioudevices lkol
     return this.devicesRepository.find({
       relations: ['interventions'], //jib m3ahom interventions mte3hom
     });
   }
 
-  async findOne(id: number): Promise<Device> { //méthode besh nrecupere device b id mte3ou
+  async findOne(id: number): Promise<Device> { //méthode besh nrecuperiou device b id mte3ou
     const device = await this.devicesRepository.findOne({
       where: { id },
       relations: ['interventions'],
