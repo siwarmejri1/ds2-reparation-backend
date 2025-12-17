@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request }
 import { PartsService } from './parts.service';
 import { CreateSparePartDto } from './dto/create-spare-part.dto';
 import { UpdateSparePartDto } from './dto/update-spare-part.dto';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
-import { IsAdminGuard } from '../common/guards/is-admin.guard';
+import { JwtAuthGuard } from '../common/guards/jwt-auth/jwt-auth.guard';
+import { IsAdminGuard } from '../common/guards/is-admin/is-admin.guard';
 // houni na3mlou controller mtaa l parts
 @Controller('parts')
 @UseGuards(JwtAuthGuard) // houni guard al controller kolou besh nverifyiw l jwt

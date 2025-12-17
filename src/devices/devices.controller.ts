@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Delete, Param, UseGuards, Request } from '@nestjs/common';
 import { DevicesService } from './devices.service';
 import { CreateDeviceDto } from './dto/create-device.dto';
-import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
-import { IsAdminGuard } from '../common/guards/is-admin.guard';
+import { JwtAuthGuard } from '../common/guards/jwt-auth/jwt-auth.guard';
+import { IsAdminGuard } from '../common/guards/is-admin/is-admin.guard';
 
 @Controller('devices')
 @UseGuards(JwtAuthGuard) // appliquina l jwtauth guard 3al controller kolou
