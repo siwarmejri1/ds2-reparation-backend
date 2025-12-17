@@ -14,11 +14,7 @@ export class PartsService {
     private sparePartsRepository: Repository<SparePart>,
   ) {}
 
-  async create(createSparePartDto: CreateSparePartDto, userRole: UserRole): Promise<SparePart> {
-    // houni na3mlou vérification li seul un admin ynejjem ycreate spare parts
-    if (userRole !== UserRole.ADMIN) {
-      throw new ForbiddenException('Only admins can create spare parts');
-    }
+  async create(createSparePartDto: CreateSparePartDto): Promise<SparePart> {
  // houni na3mlou create w save l spare part jdida
     const sparePart = this.sparePartsRepository.create(createSparePartDto);
     return this.sparePartsRepository.save(sparePart);
@@ -38,12 +34,7 @@ export class PartsService {
     return sparePart;
   }
  // houni na3mlou update l spare part
-  async update(id: number, updateSparePartDto: UpdateSparePartDto, userRole: UserRole): Promise<SparePart> {
-    //houni na3mlou vérification li seul un admin ynejjem yaamel update
-    if (userRole !== UserRole.ADMIN) {
-      throw new ForbiddenException('Only admins can update spare parts');
-    }
-
+  async update(id: number, updateSparePartDto: UpdateSparePartDto): Promise<SparePart> {
     const sparePart = await this.findOne(id);
     // houni na3mlou merge bin l données l jdida w l ancienne données
     Object.assign(sparePart, updateSparePartDto);
@@ -51,12 +42,7 @@ export class PartsService {
     return this.sparePartsRepository.save(sparePart);
   }
 
-  async remove(id: number, userRole: UserRole): Promise<void> {
-    // houni na3mlou vérification li seul un admin ynejjem yaamel delete
-    if (userRole !== UserRole.ADMIN) {
-      throw new ForbiddenException('Only admins can delete spare parts');
-    }
-
+  async remove(id: number): Promise<void> {
     const sparePart = await this.findOne(id);
     await this.sparePartsRepository.remove(sparePart);
   }
