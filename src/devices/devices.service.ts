@@ -47,8 +47,8 @@ export class DevicesService {
     return device;
   }
 
-  async remove(id: number, userRole: UserRole): Promise<void> { //méthode pour supprimer un appareil
-    // Vérifier que seul un admin peut supprimer
+  async remove(id: number, userRole: UserRole): Promise<void> { //méthode besh nfassakh device
+    // nverifiou ely ken l admin ynajem yfassakh device
     if (userRole !== UserRole.ADMIN) {
       throw new ForbiddenException('Only admins can delete devices'); //erreur si l user mahoush admin
     }
