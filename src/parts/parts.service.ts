@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { SparePart } from './entities/spare-part.entity';
 import { CreateSparePartDto } from './dto/create-spare-part.dto';
 import { UpdateSparePartDto } from './dto/update-spare-part.dto';
-import { UserRole } from '../common/enums/user-role.enum';
+
 
 @Injectable() // houni na3mlou service mtaa l parts
 export class PartsService {

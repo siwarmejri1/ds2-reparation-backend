@@ -5,22 +5,22 @@ import { Device} from './entities/device.entity';
 import {  DeviceStatus } from '../common/enums/device-status.enum';
 import { CreateDeviceDto } from './dto/create-device.dto';
 import { UpdateDeviceDto } from './dto/update-device.dto';
-import { UserRole } from '../common/enums/user-role.enum';
 
-@Injectable()b //service lkol ma ykoun 3andna logique mte3 devices
+
+@Injectable() //service lkol ma ykoun 3andna logique mte3 devices
 export class DevicesService {
   constructor( //injection mte3 repository mte3 device
     @InjectRepository(Device)
     private devicesRepository: Repository<Device>, //repository mte3 device
   ) {}
 
-  async create(createDeviceDto: CreateDeviceDto): Promise<Device> { //méthode pour créer un nouvel appareil
+  async create(createDeviceDto: CreateDeviceDto): Promise<Device> { //méthode besh nassn3ou device jdida 
     // Vérifier si le numéro de série existe déjà
     const existingDevice = await this.devicesRepository.findOne({
       where: { serialNumber: createDeviceDto.serialNumber },
     });
     
-    if (existingDevice) { //si le serial number déjà existe
+    if (existingDevice) { //si le serial number déjà maoujoud
       throw new ForbiddenException('Device with this serial number already exists');
     }
 
@@ -28,13 +28,13 @@ export class DevicesService {
     return this.devicesRepository.save(device); //sauvegarde l device fl base
   }
 
-  async findAll(): Promise<Device[]> { //méthode pour récupérer tous les appareils
+  async findAll(): Promise<Device[]> { //méthode besh nrecupere kol devices
     return this.devicesRepository.find({
       relations: ['interventions'], //jib m3ahom interventions mte3hom
     });
   }
 
-  async findOne(id: number): Promise<Device> { //méthode pour récupérer un appareil par son ID
+  async findOne(id: number): Promise<Device> { //méthode besh nrecupere device b id mte3ou
     const device = await this.devicesRepository.findOne({
       where: { id },
       relations: ['interventions'],
@@ -47,17 +47,12 @@ export class DevicesService {
     return device;
   }
 
-  async remove(id: number, userRole: UserRole): Promise<void> { //méthode besh nfassakh device
-    // nverifiou ely ken l admin ynajem yfassakh device
-    if (userRole !== UserRole.ADMIN) {
-      throw new ForbiddenException('Only admins can delete devices'); //erreur si l user mahoush admin
-    }
-
-    const device = await this.findOne(id); 
+  async remove(id: number): Promise<void> { //méthode besh nfassakh device
+   const device = await this.findOne(id); 
     await this.devicesRepository.remove(device);
   }
 
-  // hedhi méthode jdida pour update status mte3 device
+  // hedhi méthode besh nupdati status mte3 device
   async updateStatus(id: number, status: DeviceStatus): Promise<Device> {
     const device = await this.findOne(id); //l9a device b id hedha
     device.status = status; //badal status mte3ou
