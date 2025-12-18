@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-// import { Intervention } from '../../interventions/entities/intervention.entity';
+import { Intervention } from '../../interventions/entities/interventions.entity';
 import { DeviceStatus } from '../../common/enums/device-status.enum';
 import { DeviceGrade } from '../../common/enums/device-grade.enum';
 //sna3na entité Device
@@ -31,7 +31,7 @@ export class Device {
   })
   grade: DeviceGrade;
 //relation one-to-many m3a interventions
- // @OneToMany(() => Intervention, (intervention) => intervention.device) interventions: Intervention[];
+@OneToMany(() => Intervention, (intervention) => intervention.device) interventions: Intervention[];
 //timestamps mte3 creation w update
   @CreateDateColumn()
   createdAt: Date;

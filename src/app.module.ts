@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { DevicesModule } from './devices/devices.module';
 import { PartsModule } from './parts/parts.module';
+import { InterventionModule } from './interventions/interventions.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { PartsModule } from './parts/parts.module';
     UserModule,
     DevicesModule,
     PartsModule,
+    InterventionModule,
     
   ],
 })

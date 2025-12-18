@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-// import { Intervention } from '../../interventions/entities/intervention.entity';
+import { Intervention } from '../../interventions/entities/interventions.entity';
 import { TimeStampInfo } from '../../common/timestamp';
 import { Roles } from '../../common/enums/user-role.enum';
 
@@ -28,5 +28,6 @@ export class User extends TimeStampInfo {
   role: Roles;
 
 //relation one-to-many m3a l interventions
- // @OneToMany(() => Intervention, (intervention) => intervention.user) interventions: Intervention[];
+ @OneToMany(() => Intervention, (intervention) => intervention.user)
+  interventions: Intervention[];
  }
