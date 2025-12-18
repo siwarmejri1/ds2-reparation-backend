@@ -22,10 +22,10 @@ export class InterventionService { // service responsable 3al logique mta3 inter
     private readonly interventionRepository: Repository<Intervention>, // repository mta3 interventions
 
     @InjectRepository(Device)
-    private readonly deviceRepository: Repository<Device>, // repository mta3 devices
+    private readonly devicesRepository: Repository<Device>, // repository mta3 devices
 
     @InjectRepository(SparePart)
-    private readonly sparePartRepository: Repository<SparePart>, // repository mta3 spare parts
+    private readonly sparePartsRepository: Repository<SparePart>, // repository mta3 spare parts
 
     private readonly dataSource: DataSource, // DataSource mta3 TypeORM lezmou 3al transaction
     private readonly devicesService: DevicesService,
@@ -35,7 +35,7 @@ export class InterventionService { // service responsable 3al logique mta3 inter
   async create(createInterventionDto: CreateInterventionDto, user: User)  // logique mta3 création intervention
    : Promise<Intervention> {
       // hnee besh naamlou transaction 3al database barcha opérations lezmhom ykounou atomic
-      const device = await this.deviceRepository.findOne({
+      const device = await this.devicesRepository.findOne({
       where: { id: createInterventionDto.deviceId },
       });
 
@@ -44,7 +44,7 @@ export class InterventionService { // service responsable 3al logique mta3 inter
       }
 
       // hedhi besh nverifiou byha ken spare parts valides w mawjoudin kolhom
-    const spareParts = await this.sparePartRepository.findByIds(
+    const spareParts = await this.sparePartsRepository.findByIds(
       createInterventionDto.sparePartIds,
     );
       if (spareParts.length !== createInterventionDto.sparePartIds.length) {
