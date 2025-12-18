@@ -2,7 +2,7 @@
   "name": "ds2-reparation-backend",
   "version": "1.0.0",
   "description": "Backend API for electronic repair company - NestJS + MySQL",
-  "author": "Votre Nom",
+  "author": "Mejri Siwar & Derouiche Fatma",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
